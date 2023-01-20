@@ -3,58 +3,72 @@
     use Firebase\JWT\JWT;
     use Firebase\JWT\Key;
     use App\Models\Menu as MenuModel;
+    use App\Models\Role as RoleModel;
+    use App\Models\MenuRole as MenuRoleModel;
 
-    function authapi()
+    function main_menu($role_id)
     {
-        $date = date_create();
+        $menu = DB::table('menu_role')
+                ->join('menus', 'menu_role.menu_id', '=', 'menus.id')
+                ->where('menus.type', 'MAIN_MENU')
+                ->where('menu_role.role_id', $role_id)
+                ->select('menus.id', 'menus.label', 'menus.icon', 'menus.route')
+                ->orderBy('menus.short_order', 'ASC')
+                ->get();
 
-        $key = 'restfull-api-pondo';
-        $payload = [
-            'iss'       => 'pondo.co.id',
-            'cons_id'   => 'mrpondofr',
-            'timestamp' => date_timestamp_get($date)
-        ];
-
-        /**
-         * IMPORTANT:
-         * You must specify supported algorithms for your application. See
-         * https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40
-         * for a list of spec-compliant algorithms.
-         */
-        $jwt = JWT::encode($payload, $key, 'HS256');
-        $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
-
-        return json_encode($decoded);
-        /*
-        NOTE: This will now be an object instead of an associative array. To get
-        an associative array, you will need to cast it as such:
-        */
-
-        $decoded_array = (array) $decoded;
-
-
-        /**
-         * You can add a leeway to account for when there is a clock skew times between
-         * the signing and verifying servers. It is recommended that this leeway should
-         * not be bigger than a few minutes.
-         *
-         * Source: http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#nbfDef
-         */
-        JWT::$leeway = 60; // $leeway in seconds
-        $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
-    }
-
-    function decode($token)
-    {
-        return $token;
-    }
-
-    function menu()
-    {
-        $menu = MenuModel::where('parent_id', 0)
-                            ->with('children')
-                            ->orderBy('short_order', 'ASC')
-                            ->get();
-        
         return $menu;
+    }
+
+    function sub_menu($role_id)
+    {
+        $menu = DB::table('menu_role')
+                ->join('menus', 'menu_role.menu_id', '=', 'menus.id')
+                ->where('menus.type', 'SUB_MENU')
+                ->where('menu_role.role_id', $role_id)
+                ->select('menus.id', 'menus.parent_id', 'menus.label', 'menus.icon', 'menus.route')
+                ->orderBy('menus.short_order', 'ASC')
+                ->get();
+
+        return $menu;
+    }
+
+    function subsub_menu($role_id)
+    {
+        $menu = DB::table('menu_role')
+                ->join('menus', 'menu_role.menu_id', '=', 'menus.id')
+                ->where('menus.type', 'ACTIONS')
+                ->where('menu_role.role_id', $role_id)
+                ->select('menus.id', 'menus.parent_id', 'menus.label', 'menus.icon', 'menus.route')
+                ->orderBy('menus.short_order', 'ASC')
+                ->get();
+
+        return $menu;
+    }
+
+    function check_submenu($menu_id)
+    {
+        $menu = MenuModel::where('parent_id', $menu_id)->get();
+
+        return count($menu);
+    }
+
+    function access_check($menu_id, $slack)
+    {
+        $role       = RoleModel::where('slack', $slack)->first();
+        $role_id    = $role->id;
+
+        $menu = DB::table('menu_role')->where('menu_id', $menu_id)
+                                        ->where('role_id', $role_id)
+                                        ->get();
+        
+        return count($menu);
+    }
+
+    function menu_tes($menu_id, $role_id)
+    {
+        $access = MenuRoleModel::with('menu')
+                                ->where('role_id', $role_id)
+                                ->where('menu_id', $menu_id)
+                                ->get();
+        return count($access);
     }

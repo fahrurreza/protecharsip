@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>PONDOPOS | {{$data['page']}}</title>
+  <title>PERPUS SMAN-1 BANGUN PURBA | {{$data['page']}}</title>
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -58,7 +58,7 @@
     <section class="content-header">
       <h1>
         {{$data['page']}}
-        <small>{{$data['toko']}}</small>
+        <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -92,11 +92,6 @@
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<<<<<<< HEAD
-<!-- Morris.js')}} charts -->
-=======
-<!-- Morris.js charts -->
->>>>>>> 8fe3c96b63622bfeee332f54a2bb1a825faeb61d
 <!-- <script src="assets/bower_components/raphael/raphael.min.js"></script>
 <script src="assets/bower_components/morris.min.js"></script> -->
 <!-- Sparkline -->
@@ -123,14 +118,7 @@
 <script src="assets/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="assets/dist/js/demo.js"></script>
-
 <script src="assets/bower_components/select2/dist/js/select2.full.min.js"></script>
-<<<<<<< HEAD
-=======
-<script src="assets/vue/vue.js"></script>
-<script src="assets/vue/axios.js"></script>
-<script src="assets/vue/grid.js"></script>
->>>>>>> 8fe3c96b63622bfeee332f54a2bb1a825faeb61d
 @stack('custom-scripts')
 </body>
 </html>

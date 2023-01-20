@@ -7,6 +7,7 @@
 
 namespace Flasher\Laravel;
 
+use Flasher\Laravel\Container\LaravelContainer;
 use Flasher\Laravel\Middleware\FlasherMiddleware;
 use Flasher\Laravel\Middleware\HttpKernelFlasherMiddleware;
 use Flasher\Laravel\Middleware\HttpKernelSessionMiddleware;
@@ -18,6 +19,7 @@ use Flasher\Laravel\Template\BladeTemplateEngine;
 use Flasher\Laravel\Translation\Translator;
 use Flasher\Prime\Config\Config;
 use Flasher\Prime\Config\ConfigInterface;
+use Flasher\Prime\Container\FlasherContainer;
 use Flasher\Prime\EventDispatcher\EventDispatcher;
 use Flasher\Prime\EventDispatcher\EventListener\PresetListener;
 use Flasher\Prime\EventDispatcher\EventListener\TranslationListener;
@@ -50,6 +52,9 @@ final class FlasherServiceProvider extends ServiceProvider
      */
     public function afterBoot()
     {
+        FlasherContainer::init(new LaravelContainer());
+
+        $this->registerCommands();
         $this->registerBladeDirective();
         $this->registerBladeComponent();
         $this->registerLivewire();
@@ -60,7 +65,7 @@ final class FlasherServiceProvider extends ServiceProvider
     /**
      * @{@inheritdoc}
      */
-    protected function createPlugin()
+    public function createPlugin()
     {
         return new FlasherPlugin();
     }
@@ -76,6 +81,20 @@ final class FlasherServiceProvider extends ServiceProvider
         $this->registerResponseManager();
         $this->registerStorageManager();
         $this->registerEventDispatcher();
+    }
+
+    /**
+     * @return void
+     */
+    private function registerCommands()
+    {
+        if (!in_array(\PHP_SAPI, array('cli', 'phpdbg'))) {
+            return;
+        }
+
+        $this->commands(array(
+            'Flasher\Laravel\Command\InstallCommand', // flasher:install
+        ));
     }
 
     /**

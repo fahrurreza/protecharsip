@@ -20,6 +20,6 @@ class Menu extends Model
 
     public function subchildren()
     {
-        return $this->hasMany(Menu::class,'parent_id');
+        return $this->hasMany(Menu::class,'parent_id')->orderBy('short_order', 'ASC');
     }
 }

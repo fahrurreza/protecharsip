@@ -35,10 +35,8 @@ class ApiCategoryController extends Controller
             
             $data_insert = [
                 'category_name'     => $request->category_name,
-                'category_slug'          => $request->category_slug,
-                'category_details'      => $request->category_details,
-                'status'        => $request->status,
-                'short_order'        => $request->short_order
+                'deskripsi'          => $request->deskripsi,
+                'status'        => $request->status
             ];
 
             $insert = CategoryModel::create($data_insert);
@@ -72,7 +70,7 @@ class ApiCategoryController extends Controller
 
     public function show(Request $request)
     {
-        $query = CategoryModel::where('category_id', '=', $request->id)->first();
+        $query = CategoryModel::where('id', '=', $request->id)->first();
 
         return $query;
     }
@@ -81,13 +79,11 @@ class ApiCategoryController extends Controller
     {
         $data_update = [
             'category_name'     => $request->category_name,
-            'category_slug'     => $request->category_slug,
-            'category_details'  => $request->category_details,
-            'status'            => $request->status,
-            'short_order'       => $request->short_order
+            'deskripsi'          => $request->deskripsi,
+            'status'        => $request->status
         ];
 
-        $query = CategoryModel::where('category_id', $request->id)->update($data_update);
+        $query = CategoryModel::where('id', $request->id)->update($data_update);
 
         if($query)
         {
@@ -112,7 +108,7 @@ class ApiCategoryController extends Controller
     {
         try 
         {
-            $result=CategoryModel::where('category_id',$request->id)->delete();
+            $result=CategoryModel::where('id',$request->id)->delete();
             if($request)
             {
                 $query = CategoryModel::where($request->column, 'LIKE', '%' . $request->keyword . '%')

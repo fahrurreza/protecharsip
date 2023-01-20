@@ -19,27 +19,16 @@ const App = {
         form:{
           id : null,
           category_name : null,
-          category_slug : null,
-          category_details : null,
-          parent : null,
+          deskripsi : null,
           status : null,
-          short_order : null
         },
         hasError : {
           category_name : false,
-          category_slug : false,
-          category_details : false,
-          parent : false,
           status : false,
-          short_order : false
         },
         error: {
           category_name : false,
-          category_slug : false,
-          category_details : false,
-          parent : false,
           status : false,
-          short_order : false
         },
       }
     },
@@ -125,10 +114,8 @@ const App = {
       //FORM FUNCTION
       resetForm: function () { 
         this.form.category_name = null,
-        this.form.category_slug = null,
-        this.form.category_details = null,
-        this.form.status = null,
-        this.form.short_order = null
+        this.form.deskripsi = null,
+        this.form.status = null
       },
   
       cancelForm: function(){
@@ -170,20 +157,14 @@ const App = {
         if(!this.form.category_name) {
           this.error.category_name = "type is required";
           this.hasError.category_name = true;
-          
-        }
-        else if(!this.form.category_slug) {
-          this.error.category_slug = "Label is required";
-          this.hasError.category_slug = true;
-        }
-        else if(!this.form.short_order) {
-          this.error.short_order= "Link is required";
-          this.hasError.short_order = true;
+          console.log('category')
         }
         else if(!this.form.status) {
+          console.log('status')
           this.error.status= "Status is required";
           this.hasError.status = true;
         } else {
+          console.log('ok')
           axios
           .post('api/create-category', this.form)
           .then(response => {
@@ -212,11 +193,9 @@ const App = {
         axios.post('api/show-category', this.table).then(response => {
           if(response.status == 200){
             
-            this.form.id = response.data.category_id
+            this.form.id = response.data.id
             this.form.category_name = response.data.category_name
-            this.form.category_slug = response.data.category_slug
-            this.form.category_details = response.data.category_details
-            this.form.short_order = response.data.short_order
+            this.form.deskripsi = response.data.deskripsi
             this.form.status = response.data.status
   
           }else{

@@ -47,26 +47,10 @@
                 <span v-if="error.category_name" class="help-block">@{{ error.category_name }}</span>
               </div>
             </div>
-            <div class="form-group" v-bind:class="{ 'has-error': hasError.category_slug }">
-              <label class="col-sm-3 control-label">Category Slug*</label>
-              <div class="col-sm-7">
-                <input v-model="form.category_slug" type="text" name="link" class="form-control">
-                <span v-if="error.category_slug" class="help-block">@{{ error.category_slug }}</span>
-              </div>
-            </div>
-            <div class="form-group" v-bind:class="{ 'has-error': hasError.parent }">
-              <label for="categoryname" class="col-sm-3 control-label">Parent</label>
-              <div class="col-sm-7">
-              <select class="form-control select2" style="width: 100%;" name="parent" v-model="form.parent">
-                  <option selected="selected" value="0">Air Mineral</option>
-              </select>
-              <span v-if="error.parent" class="help-block">@{{ error.parent }}</span>
-              </div>
-            </div>
             <div class="form-group">
-              <label for="categoryname" class="col-sm-3 control-label">Category Detail</label>
+              <label for="categoryname" class="col-sm-3 control-label">Deskripsi</label>
               <div class="col-sm-7">
-                <textarea class="form-control" v-model="form.category_details" cols="10" rows="10"></textarea>
+                <textarea class="form-control" v-model="form.deskripsi" cols="10" rows="2"></textarea>
               </div>
             </div>
             <div class="form-group" v-bind:class="{ 'has-error': hasError.status }">
@@ -80,16 +64,10 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="categoryname" class="col-sm-3 control-label">Short Order</label>
-              <div class="col-sm-7">
-                <input v-model.number="form.short_order" type="number" name="short_order" class="form-control" id="short_order" min="1">
-              </div>
-            </div>
-            <div class="form-group">
               <div class="col-sm-offset-3 col-sm-7">
                 <div class="button">
-                  <button v-if="submit" type="button" class="btn btn-primary" style="margin-right : 10px" @click="createData"><i class="fa fa-save"></i> Save</button>
-                  <button v-else="submit" type="button" class="btn btn-primary" style="margin-right : 10px" @click="updateData(this.table.id)"><i class="fa fa-save"></i> Update</button>
+                  <button v-if="submit" type="button" class="btn btn-primary" style="margin-right : 10px" @click="createData"><i class="fa fa-save"></i> Save <i class="fa fa-spin fa-refresh" v-if="loading"></i>&nbsp</button>
+                  <button v-else="submit" type="button" class="btn btn-primary" style="margin-right : 10px" @click="updateData(this.table.id)"><i class="fa fa-arrow-up"></i> Update <i class="fa fa-spin fa-refresh" v-if="loading"></i>&nbsp</button>
                   <button type="button" class="btn btn-danger" @click="this.resetForm()"><i class="fa fa-recycle"></i> Reset</button>
                   <button v-if="!submit" type="button" class="btn btn-success pull-right" @click="this.cancelForm()"><i class="fa fa-arrow-left"></i> Cancel</button>
                 </div>
@@ -131,27 +109,23 @@
                   <tr role="row">
                     <th class="text-center">Id</th>
                     <th>Category Name</th>
-                    <th class="text-center">Total Item</th>
-                    <th>Order</th>
+                    <th>Deskripsi</th>
                     <th>Status</th>
-                    <th>Created At</th>
                     <th class="text-center">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="text-center"><input type="text" id="category_id" v-on:keyup="this.search('category_id')"></td>
-                    <td class="text-center"><input type="text" id="category_name" v-on:keyup="this.search('category_name')"></td>
-                    <td><input type="text" id="category_slug" v-on:keyup="this.search('category_slug')"></td>
-                    <td><input type="text" id="category_details" v-on:keyup="this.search('category_details')"></td>
+                    <td class="text-center"><input type="text" id="id" v-on:keyup="this.search('id')"></td>
+                    <td><input type="text" id="category_name" v-on:keyup="this.search('category_name')"></td>
+                    <td><input type="text" id="deskripsi" v-on:keyup="this.search('deskripsi')"></td>
                     <td></td>
                     <td></td>
                   </tr>
                   <tr v-for="item in items">
-                    <td class="text-center">@{{item.category_id}}</td>
-                    <td class="text-center">@{{item.category_name}}</td>
-                    <td></td>
-                    <td></td>
+                    <td class="text-center">@{{item.id}}</td>
+                    <td>@{{item.category_name}}</td>
+                    <td>@{{item.deskripsi}}</td>
                     <td>
                       <span class="badge btn-success" v-if="item.status == 1">Active</span>
                       <span class="badge btn-warning" v-else>Inactive</span>
@@ -163,8 +137,8 @@
                           . . .
                         </button>
                         <div class="dropdown-menu pull-right">
-                          <li @click="this.editData(item.category_id)"><a>Edit</a></li>
-                          <li @click="this.deleteData(item.category_id)"><a>Delete</a></li>
+                          <li @click="this.editData(item.id)"><a>Edit</a></li>
+                          <li @click="this.deleteData(item.id)"><a>Delete</a></li>
                         </div>
                       </div>
                     </td>
@@ -174,10 +148,8 @@
                   <tr role="row">
                     <th class="text-center">Id</th>
                     <th>Category Name</th>
-                    <th class="text-center">Total Item</th>
-                    <th>Order</th>
+                    <th>Deskripsi</th>
                     <th>Status</th>
-                    <th>Created At</th>
                     <th class="text-center">Action</th>
                   </tr>
                 </tfoot>
