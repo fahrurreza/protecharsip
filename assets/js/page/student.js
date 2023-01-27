@@ -19,29 +19,29 @@ const App = {
       form:{
         id : null,
         nama_siswa : null,
-        nis : null,
         alamat : null,
         tempat_lahir : null,
         tanggal_lahir : null,
-        tahun_angkatan : null,
+        sex : null,
+        agama : null,
         status : null,
       },
       hasError : {
         nama_siswa : false,
-        nis : false,
         alamat : false,
         tempat_lahir : false,
         tanggal_lahir : false,
-        tahun_angkatan : false,
+        sex : false,
+        agama : false,
         status : false
       },
       error: {
         nama_siswa : false,
-        nis : false,
         alamat : false,
         tempat_lahir : false,
         tanggal_lahir : false,
-        tahun_angkatan : false,
+        sex : false,
+        agama : false,
         status : false
       },
     }
@@ -129,11 +129,11 @@ const App = {
     resetForm: function () {
         this.submit = true, 
         this.form.nama_siswa = null,
-        this.form.nis = null,
         this.form.alamat = null,
         this.form.tempat_lahir = null,
         this.form.tanggal_lahir = null,
-        this.form.tahun_angkatan = null,
+        this.form.sex = null,
+        this.form.agama = null,
         this.form.status = null
     },
 
@@ -176,16 +176,10 @@ const App = {
       if(!this.form.nama_siswa) {
         this.error.nama_siswa = "type is required";
         this.hasError.nama_siswa = true;
-        
-      }
-      else if(!this.form.nis) {
-        this.error.nis = "Label is required";
-        this.hasError.nis = true;
       }
       else if(!this.form.alamat) {
         this.error.alamat= "Link is required";
         this.hasError.alamat = true;
-        console.log(this.form.alamat)
       }
       else if(!this.form.tempat_lahir) {
         this.error.tempat_lahir= "Link is required";
@@ -194,6 +188,14 @@ const App = {
       else if(!this.form.tanggal_lahir) {
         this.error.tanggal_lahir= "Link is required";
         this.hasError.tanggal_lahir = true;
+      }
+      else if(!this.form.sex) {
+        this.error.sex = "Label is required";
+        this.hasError.sex = true;
+      }
+      else if(!this.form.agama) {
+        this.error.agama = "Label is required";
+        this.hasError.agama = true;
       }
       else if(!this.form.status) {
         this.error.status= "Status is required";
@@ -228,11 +230,11 @@ const App = {
         if(response.status == 200){
           this.form.id = response.data.id
           this.form.nama_siswa = response.data.nama_siswa
-          this.form.nis = response.data.nis
           this.form.alamat = response.data.alamat
           this.form.tempat_lahir = response.data.tempat_lahir,
           this.form.tanggal_lahir = response.data.tanggal_lahir,
-          this.form.tahun_angkatan = response.data.tahun_angkatan,
+          this.form.sex = response.data.sex,
+          this.form.agama = response.data.agama
           this.form.status = response.data.status
 
         }else{

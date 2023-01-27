@@ -93,7 +93,6 @@ class ApiUserController extends Controller
             'username'          => $request->username,
             'email'             => $request->email,
             'status'            => $request->status,
-            'user_id'           => Auth::user()->id,
             'role_id'           => $request->role_id,
             'updated_at'        => now(),
         ];

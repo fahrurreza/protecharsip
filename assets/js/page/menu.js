@@ -20,7 +20,7 @@ const App = {
         id : null,
         type : null,
         parent_id : 0,
-        label : '',
+        label : null,
         link : null,
         icon : null,
         short_order : null,
@@ -33,13 +33,13 @@ const App = {
         type: false,
       },
       error: {
-        type : null,
-        parent_id : null,
-        label : '',
-        link : null,
-        icon : null,
-        short_order : null,
-        status: null,
+        type : false,
+        parent_id : false,
+        label : false,
+        link : false,
+        icon : false,
+        short_order : false,
+        status: false,
       },
     }
   },
@@ -123,12 +123,16 @@ const App = {
     //TABLE FUNCTION END
 
     //FORM FUNCTION
-    resetForm: function () { 
-      this.form.unit_name = null,
-      this.form.code_name = null,
-      this.form.unit_details = null,
-      this.form.status = null,
-      this.form.short_order = null
+    resetForm: function () {
+      this.submit = true, 
+      this.form.id = null,
+      this.form.type = null,
+      this.form.parent_id = 0,
+      this.form.label = null,
+      this.form.link = null,
+      this.form.icon = null,
+      this.form.short_order = null,
+      this.form.status = null
     },
 
     cancelForm: function(){

@@ -36,11 +36,11 @@ class ApiStudentController extends Controller
             $data_insert = [
                 'user_id'           => 1,
                 'nama_siswa'        => $request->nama_siswa,
-                'nis'               => $request->nis,
                 'alamat'            => $request->alamat,
                 'tempat_lahir'      => $request->tempat_lahir,
                 'tanggal_lahir'     => $request->tanggal_lahir,
-                'tahun_angkatan'    => $request->tahun_angkatan,
+                'sex'               => $request->sex,
+                'agama'             => $request->agama,
                 'status'            => $request->status,
                 'created_at'        => now(),
             ];
@@ -85,11 +85,11 @@ class ApiStudentController extends Controller
     {
         $data_update = [
             'nama_siswa'        => $request->nama_siswa,
-            'nis'               => $request->nis,
             'alamat'            => $request->alamat,
             'tempat_lahir'      => $request->tempat_lahir,
             'tanggal_lahir'     => $request->tanggal_lahir,
-            'tahun_angkatan'    => $request->tahun_angkatan,
+            'sex'    => $request->sex,
+            'agama'               => $request->agama,
             'status'            => $request->status,
         ];
 

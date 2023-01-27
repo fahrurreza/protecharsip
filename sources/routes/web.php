@@ -31,18 +31,10 @@ Route::middleware('auth')->group(function() {
     Route::get('/role-menu', 'RoleController@role_menu')->name('role-menu');
     Route::post('/setting-menu', 'RoleController@setting_menu')->name('setting-menu');
     Route::post('/store-menu', 'RoleController@store_menu')->name('store-menu');
-    Route::get('/data-rak', 'RakController@index')->name('rak');
-    Route::get('/data-kategori', 'CategoryController@index')->name('kategori');
-    Route::get('/data-buku', 'BookController@index')->name('book');
-    Route::get('/data-stock', 'StockController@index')->name('stock');
     Route::get('/data-siswa', 'StudentController@index')->name('student');
+    Route::get('/data-instruktur', 'InstrukturController@index')->name('instruktur');
     Route::get('/data-role', 'RoleController@index')->name('role');
     Route::get('/data-user', 'UserController@index')->name('user');
-
-    //PINJAMAN
-    Route::get('/pinjam-buku', 'PinjamanController@index')->name('pinjaman');
-    Route::post('/create-pinjaman', 'PinjamanController@store');
-    Route::get('/pengembalian-buku', 'PinjamanController@kembalian')->name('kembalian');
 
     //LOGOUT
     Route::get('/change-password', 'LoginController@change_password')->name('change-password');

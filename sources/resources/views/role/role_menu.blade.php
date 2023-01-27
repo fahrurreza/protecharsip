@@ -8,8 +8,16 @@
 <script src="assets/sweetalert/xsweetalert.css"></script>
 @endpush
 
-<section class="content" id="app">
-<div class="box box-info">
+<!-- Main Content -->
+<div id="content">
+
+  <!-- Topbar -->
+  @include('layouts.topbar')
+  <!-- End of Topbar -->
+
+  <!-- Begin Page Content -->
+  <div class="container" id="app">
+    <div class="box box-info">
       <div class="box-header">
         <h3 class="box-title">{{$data['page']}} List</h3>
       </div>
@@ -48,7 +56,11 @@
         </div>
       </div><!-- /.box-body -->
     </div>
-</section>
+    </div>
+  <!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
 
 @endsection
 

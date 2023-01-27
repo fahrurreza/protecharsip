@@ -40,6 +40,11 @@ class LoginController extends Controller
                 return \Redirect::back();
             }
         }
+        else
+        {
+            Toastr::error('Login gagal!');
+            return \Redirect::back();
+        }
     }
 
     public function change_password()

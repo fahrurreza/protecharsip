@@ -12,7 +12,7 @@ class UserController extends Controller
     {
         $data = [
             'page'  => 'User',
-            'role'  => RoleModel::all(),
+            'role'  => RoleModel::where('id', '!=', 1)->get(),
         ];
         return view('user.index', compact('data'));
     }

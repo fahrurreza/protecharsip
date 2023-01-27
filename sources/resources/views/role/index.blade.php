@@ -8,54 +8,77 @@
 <script src="assets/sweetalert/xsweetalert.css"></script>
 @endpush
 
-<section class="content" id="app">
-  <div class="box box-primary">
-      <div class="box-header">
-        <i class="ion ion-clipboard"></i>
+<!-- Main Content -->
+<div id="content">
 
-        <h3 class="box-title">@{{table.name}} List</h3>
+  <!-- Topbar -->
+  @include('layouts.topbar')
+  <!-- End of Topbar -->
 
-        <div class="box-tools pull-right">
-          <ul class="pagination pagination-sm inline">
-            <li :class="{disabled : this.meta.current_page <= 1}" @click="this.backPage"><a>&laquo;</a></li>
-            <li v-for="pages in buttonPage" :class="{active : this.meta.current_page == pages.page}">
-              <a @click="this.page(pages.page)" v-if="pages.page != '...'">@{{pages.page}}</a>
-              <a v-if="pages.page == '...'" disabled>@{{pages.page}}</a>
-            </li>
-            <li :class="{disabled : this.table.pageSelect >= this.meta.last_page}" @click="this.nextPage"><a>&raquo;</a></li>
-          </ul>
-        </div>
-      </div>
-      <!-- /.box-header -->
-      <div class="box-body">
-        <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-        <ul class="todo-list">
-          <li v-for="item in items">
-            <span class="handle">
-              <i class="fa fa-ellipsis-v"></i>
-              <i class="fa fa-ellipsis-v"></i>
-            </span>
-            <span class="text">@{{item.role}}</span>
-            <div class="tools">
-              <i class="fa fa-edit" @click="editData(item.id)"></i>
-              <i class="fa fa-trash-o" @click="this.deleteData(item.id)"></i>
+  <!-- Begin Page Content -->
+  <div class="container" id="app">
+    
+    <!-- Approach -->
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Data Role</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="datatable" class="table table-bordered table-striped">
+                <thead>
+                  <tr role="row">
+                    <th class="text-center">Role</th>
+                    <th class="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center"><input type="text" id="role" v-on:keyup="this.search('role')"></td>
+                    <td></td>
+                  </tr>
+                  <tr v-for="item in items">
+                    <td class="text-center">@{{item.role}}</td>
+                    <td class="text-center">
+                      <div class="btn-group">
+                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Pilih
+                        </button>
+                        <div class="dropdown-menu ml-auto">
+                          <li class="dropdown-item" @click="this.editData(item.id)" data-toggle="modal" data-target="#exampleModalCenter"><a>Edit</a></li>
+                          <li class="dropdown-item" @click="this.deleteData(item.id)"><a>Delete</a></li>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr role="row">
+                    <th class="text-center">Role</th>
+                    <th class="text-center">Action</th>
+                  </tr>
+                </tfoot>
+              </table>
+              <div class="input-group input-group-sm">
+                <input type="text" class="form-control" v-model="form.role" placeholder="Input New Role Here...">
+                <span class="input-group-append">
+                  <button v-if="submit" type="button" class="btn btn-primary btn-flat" @click="createData"> <i class="fa fa-plus"></i> Simpan <i class="fa fa-spin fa-refresh" v-if="loading"></i>&nbsp</button>
+                  <button v-else="submit" type="button" class="btn btn-primary btn-flat" @click="updateData(this.table.id)"> <i class="fa fa-arrow-up"></i> Update <i class="fa fa-spin fa-refresh" v-if="loading"></i>&nbsp</button>
+                </span>
+              </div>
             </div>
-          </li>
-        </ul>
-      </div>
-      <!-- /.box-body -->
-      <div class="box-footer clearfix no-border">
-        <div class="input-group input-group-sm">
-          <input type="text" class="form-control" v-model="form.role">
-          <span class="input-group-btn">
-            <button v-if="submit" type="button" class="btn btn-info btn-flat" @click="createData"> <i class="fa fa-plus"></i> Simpan <i class="fa fa-spin fa-refresh" v-if="loading"></i>&nbsp</button>
-            <button v-else="submit" type="button" class="btn btn-info btn-flat" @click="updateData(this.table.id)"> <i class="fa fa-arrow-up"></i> Update <i class="fa fa-spin fa-refresh" v-if="loading"></i>&nbsp</button>
-          </span>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
-</section>
+  <!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
 
 @endsection
 

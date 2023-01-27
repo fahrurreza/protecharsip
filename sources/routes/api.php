@@ -18,33 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//DATA-LIST
-Route::post('/get-product', 'API\ApiProductController@index');
-Route::post('/create-product', 'API\ApiProductController@store');
-Route::post('/show-product', 'API\ApiProductController@show');
-Route::post('/update-product', 'API\ApiProductController@update');
-Route::post('/delete-product', 'API\ApiProductController@delete');
-
-//DATA-CATEGORY
-Route::post('/get-category', 'API\ApiCategoryController@index');
-Route::post('/create-category', 'API\ApiCategoryController@store');
-Route::post('/show-category', 'API\ApiCategoryController@show');
-Route::post('/update-category', 'API\ApiCategoryController@update');
-Route::post('/delete-category', 'API\ApiCategoryController@delete');
-
-//DATA-RAK
-Route::post('/get-rak', 'API\ApiRakController@index');
-Route::post('/create-rak', 'API\ApiRakController@store');
-Route::post('/show-rak', 'API\ApiRakController@show');
-Route::post('/update-rak', 'API\ApiRakController@update');
-Route::post('/delete-rak', 'API\ApiRakController@delete');
-
-//DATA-BOOK
-Route::post('/get-book', 'API\ApiBookController@index');
-Route::post('/create-book', 'API\ApiBookController@store');
-Route::post('/show-book', 'API\ApiBookController@show');
-Route::post('/update-book', 'API\ApiBookController@update');
-Route::post('/delete-book', 'API\ApiBookController@delete');
 
 //DATA-MENU
 Route::post('/get-menu', 'API\ApiMenuController@index');
@@ -60,25 +33,19 @@ Route::post('/show-student', 'API\ApiStudentController@show');
 Route::post('/update-student', 'API\ApiStudentController@update');
 Route::post('/delete-student', 'API\ApiStudentController@delete');
 
+//DATA-STUDENT
+Route::post('/get-instruktur', 'API\ApiInstrukturController@index');
+Route::post('/create-instruktur', 'API\ApiInstrukturController@store');
+Route::post('/show-instruktur', 'API\ApiInstrukturController@show');
+Route::post('/update-instruktur', 'API\ApiInstrukturController@update');
+Route::post('/delete-instruktur', 'API\ApiInstrukturController@delete');
+
 //DATA-USER
 Route::post('/get-user', 'API\ApiUserController@index');
 Route::post('/create-user', 'API\ApiUserController@store');
 Route::post('/show-user', 'API\ApiUserController@show');
 Route::post('/update-user', 'API\ApiUserController@update');
 Route::post('/delete-user', 'API\ApiUserController@delete');
-
-//DATA-STOCK
-Route::post('/get-stock', 'API\ApiStockController@index');
-Route::post('/create-stock', 'API\ApiStockController@store');
-Route::post('/show-stock', 'API\ApiStockController@show');
-Route::post('/update-stock', 'API\ApiStockController@update');
-Route::post('/delete-stock', 'API\ApiStockController@delete');
-
-//PINJAMAN
-Route::post('/get-pinjaman', 'API\ApiPinjamanController@index');
-Route::post('/update-pinjaman', 'API\ApiPinjamanController@update');
-Route::post('/delete-pinjaman', 'API\ApiPinjamanController@delete');
-Route::post('/get-kembalian', 'API\ApiPinjamanController@kembalian');
 
 //DATA-ROLE
 Route::post('/get-role', 'API\ApiRoleController@index');
