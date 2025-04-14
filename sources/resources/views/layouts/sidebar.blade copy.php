@@ -27,7 +27,7 @@
       @foreach($main_menu as $menu)
         @if(check_submenu($menu->id) > 0)
         <li class="treeview">
-          <a href="{{$menu->route}}">
+          <a href="{{route($menu->route)}}">
             <i class="{{$menu->icon}}"></i> <span>{{$menu->label}}</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -54,7 +54,7 @@
                 </ul>
               </li>
               @else
-              <li><a href="{{$submenu->route}}"><i class="{{$submenu->icon}}"></i> {{$submenu->label}}</a></li>
+              <li><a href="{{route($submenu->route)}}"><i class="{{$submenu->icon}}"></i> {{$submenu->label}}</a></li>
               @endif
             @endif
           @endforeach
@@ -63,7 +63,7 @@
         @else
         <li>
           <a href="{{$menu->route}}">
-            <i class="{{$menu->icon}}"></i> <span>{{$menu->label}}</span>
+            <i class="{{route($menu->icon)}}"></i> <span>{{$menu->label}}</span>
           </a>
         </li>
         @endif

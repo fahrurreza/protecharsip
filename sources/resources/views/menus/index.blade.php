@@ -108,48 +108,49 @@
           <h6 class="m-0 font-weight-bold text-primary">Data Menu</h6>
       </div>
       <div class="card-body">
-        <div class="table-responsive">
-          <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-            <div class="row my-3">
-              <div class="col-sm-12">
-                <div class="dataTables_length" id="datatable_length">
-                  <label>
-                    Show 
-                    <select name="datatable_length" aria-controls="datatable" class="form-control input-sm" v-model="table.perPage" @change="this.entries">
-                      <option v-for="option in entriesOption" :value="option.value" >@{{option.value}}</option>
-                    </select> 
-                    entries
-                  </label>
-                </div>
-              </div>
+        <div class="row">
+          <div class="col-3">
+            <div class="dataTables_length" id="datatable_length">
+              show
+              <label>
+                <select name="datatable_length" aria-controls="datatable" class="form-control input-sm" v-model="table.perPage" @change="this.entries">
+                  <option v-for="option in entriesOption" :value="option.value" >@{{option.value}}</option>
+                </select> 
+              </label>
+              entries
             </div>
-            <div class="row">
-              <div class="col-sm-12">
-              <table class="table table-striped">
+          </div>
+          <div class="col-2">
+            <select name="" id="column" class="form form-control">
+               <option value="label">Menu</option>
+               <option value="route">Link</option>
+               <option value="icon">Icon</option>
+            </select>
+          </div>
+          <div class="col-7">
+            <input type="text" id="search" class="form form-control" v-on:keyup="this.search()">
+          </div>
+        </div>
+        
+                     
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <div class="table-responsive">
+              <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                <table id="datatable" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th class="text-center">Id</th>
-                    <th class="text-center">Parent ID</th>
+                    <th class="text-center">No</th>
                     <th>Label</th>
                     <th>Route</th>
                     <th>Icon</th>
                     <th>Status</th>
                     <th class="text-center">Action</th>
                   </tr>
-                  <tr>
-                    <td class="text-center"><input type="text" id="id" v-on:keyup="this.search('id')"></td>
-                    <td class="text-center"><input type="text" id="parent_id" v-on:keyup="this.search('parent_id')"></td>
-                    <td><input type="text" id="label" v-on:keyup="this.search('label')"></td>
-                    <td><input type="text" id="route" v-on:keyup="this.search('route')"></td>
-                    <td><input type="text" id="icon" v-on:keyup="this.search('icon')"></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="item in items">
-                    <td class="text-center">@{{item.id}}</td>
-                    <td class="text-center">@{{item.parent_id}}</td>
+                  <tr v-for="(item, index) in items">
+                    <td>@{{ index + 1 }}</td>
                     <td>@{{item.label}}</td>
                     <td>@{{item.route}}</td>
                     <td>@{{item.icon}}</td>

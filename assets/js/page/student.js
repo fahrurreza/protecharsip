@@ -94,10 +94,10 @@ const App = {
       this.getData(this.table)
     },
 
-    search: function(column){
+    search: function(){
       this.table.pageSelect = null
-      this.table.column = column
-      var value = document.getElementById(column).value
+      this.table.column = document.getElementById('column').value;
+      var value = document.getElementById('search').value;
       this.table.keyword = value
 
       this.getData(this.table)

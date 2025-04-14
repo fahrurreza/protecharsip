@@ -36,13 +36,13 @@ class LoginController extends Controller
             }
             else
             {
-                Toastr::error('Login gagal!');
+                Toastr::error('Password anda salah!');
                 return \Redirect::back();
             }
         }
         else
         {
-            Toastr::error('Login gagal!');
+            Toastr::error('Email anda salah!');
             return \Redirect::back();
         }
     }

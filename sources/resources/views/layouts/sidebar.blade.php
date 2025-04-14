@@ -7,14 +7,14 @@
 @endphp
 
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('dashboard')}}">
       <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-fas fa-mail-bulk"></i>
       </div>
-      <div class="sidebar-brand-text mx-3">Multi Logika</div>
+      <div class="sidebar-brand-text mx-3">Pro Tech</div>
   </a>
 
   <!-- Divider -->
@@ -33,7 +33,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             @foreach($sub_menu as $submenu)
             @if($menu->id == $submenu->parent_id)
-              <a class="collapse-item" href="{{$submenu->route}}"> <i class="{{$submenu->icon}}"></i> {{$submenu->label}}</a>
+              <a class="collapse-item" href="{{url($submenu->route)}}"> <i class="{{$submenu->icon}}"></i> {{$submenu->label}}</a>
             @endif
             @endforeach
           </div>
@@ -42,7 +42,7 @@
   @else
   <!-- Nav Item - Charts -->
   <li class="nav-item">
-      <a class="nav-link" href="{{$menu->route}}">
+      <a class="nav-link" href="{{url($menu->route)}}">
           <i class="{{$menu->icon}}"></i>
           <span>{{$menu->label}}</span></a>
   </li>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>ProTech Academy - Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,7 +23,7 @@
 </head>
 
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-warning">
 
     <div class="container">
 
@@ -36,13 +36,13 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login">
-                                <img src="assets/img/bg-login2.jpg" alt="" width="500" height="300">
+                            <div class="col-lg-6 d-none d-lg-block bg-login my-2">
+                                <img src="assets/img/logos.png" alt="" width="400" height="400">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Arsip System Protect Academy</h1>
                                     </div>
                                     <form class="user" action="{{route('login')}}" method="post">
                                         @csrf
@@ -62,7 +62,7 @@
                                                     Me</label>
                                             </div>
                                         </div> -->
-                                        <button class="btn btn-primary btn-user btn-block" type="submit">
+                                        <button class="btn btn-warning btn-user btn-block" type="submit">
                                             Login
                                         </button>
                                     </form>

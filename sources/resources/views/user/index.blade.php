@@ -17,7 +17,7 @@
   <!-- Begin Page Content -->
   <div class="container" id="app">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModalCenter">
+    <button type="button" class="btn btn-warning mb-3" data-toggle="modal" data-target="#exampleModalCenter">
       <i class="fas fa-user-plus"></i> Tambah User
     </button>
 
@@ -91,30 +91,42 @@
     <!-- Approach -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Data Menu</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
       </div>
       <div class="card-body">
-        <div class="table-responsive">
-          <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-            <div class="row my-3">
-              <div class="col-sm-12">
-                <div class="dataTables_length" id="datatable_length">
-                  <label>
-                    Show 
-                    <select name="datatable_length" aria-controls="datatable" class="form-control input-sm" v-model="table.perPage" @change="this.entries">
-                      <option v-for="option in entriesOption" :value="option.value" >@{{option.value}}</option>
-                    </select> 
-                    entries
-                  </label>
-                </div>
-              </div>
+        <div class="row">
+          <div class="col-3">
+            <div class="dataTables_length" id="datatable_length">
+              show
+              <label>
+                <select name="datatable_length" aria-controls="datatable" class="form-control input-sm" v-model="table.perPage" @change="this.entries">
+                  <option v-for="option in entriesOption" :value="option.value" >@{{option.value}}</option>
+                </select> 
+              </label>
+              entries
             </div>
-            <div class="row">
-              <div class="col-lg-12 col-md-12">
+          </div>
+          <div class="col-2">
+            <select name="" id="column" class="form form-control">
+              <option value="nama_lengkap">Nama</option>
+              <option value="username">Username</option>
+              <option value="email">Email</option>
+            </select>
+          </div>
+          <div class="col-7">
+            <input type="text" id="search" class="form form-control" v-on:keyup="this.search()">
+          </div>
+        </div>
+        
+                     
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <div class="table-responsive">
+              <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                 <table id="datatable" class="table table-bordered table-striped">
                   <thead>
                     <tr role="row">
-                      <th>ID</th>
+                      <th>No</th>
                       <th>Nama User</th>
                       <th>Username</th>
                       <th>Email</th>
@@ -125,18 +137,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td></td>
-                      <td><input type="text" id="nama_lengkap" v-on:keyup="this.search('nama_lengkap')"></td>
-                      <td><input type="text" id="username" v-on:keyup="this.search('username')"></td>
-                      <td><input type="text" id="email" v-on:keyup="this.search('email')"></td>
-                      <td><input type="text" id="role_id" v-on:keyup="this.search('role_id')"></td>
-                      <td><input type="text" id="user_id" v-on:keyup="this.search('user_id')"></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr v-for="item in items">
-                      <td>@{{item.id}}</td>
+                    <tr v-for="(item, index) in items">
+                      <td>@{{ index + 1 }}</td>
                       <td>@{{item.nama_lengkap}}</td>
                       <td>@{{item.username}}</td>
                       <td>@{{item.email}}</td>
