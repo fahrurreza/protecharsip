@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Protech Academy</title>
     <style>
         body {
             height: 100vh;
@@ -60,9 +61,61 @@
         .nama td {
         padding-top: 20px;
         }
+
+        
     </style>
 </head>
 <body>
+<div class="header">
+    <style>
+        .header table {
+            border-collapse: collapse;
+            border: none;
+            width: 100%;
+            color : blue;
+        }
+
+        .header span {
+            color: #FFCC00;
+        }
+
+        .header td {
+            border: none;
+            padding: 5px;
+            vertical-align: top;
+            border-bottom: 1px solid black;
+        }
+
+        .header .logo-cell {
+            width: 100px;
+        }
+
+        .header .content-cell h3 {
+            margin: 0;
+            color: #17a2b8; /* warna biru info */
+        }
+
+        .header .contact-info {
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+
+    <table>
+        <tr>
+            <td class="logo-cell">
+                <img src="{{ asset('assets/img/logocop.png') }}" alt="Logo" width="100px">
+            </td>
+            <td class="content-cell">
+                <h3 class="text-info">PT. PROTECH <span>ACADEMY</span></h3>
+                <p>Jl. Danau Laut Tawar Lk. V Kel. Sumber Karya</p>
+                <p>Kec. Binjai Timur Kota Binjai Prov. Sumatera Utara</p>
+                <p class="contact-info">Telp: +62 823-6305-5002 | Email: protech.academy.binjai@gmail.com</p>
+            </td>
+        </tr>
+    </table>
+</div>
+
     <h5 class="center-text">LAPORAN ARSIP {{ $data['type'] }}</h5>
     <h5 class="center-text">PT. PROTECH ACADEMY BINJAI {{ $data['type'] }}</h5>
     <h5 class="center-text">TAHUN {{ $data['year'] }}</h5>
